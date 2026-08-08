@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Frames — Wedding, Portrait & Video Photography</title>
+<meta name="description" content="Dream Frames — wedding photography, personal portrait shoots, and videography. Every frame, a dream held still.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1B1815;
+    --charcoal-deep:#121010;
+    --cream:#F2E9DC;
+    --cream-dim:#C9C0B2;
+    --amber:#C97A2B;
+    --amber-bright:#E8A33D;
+    --rose:#C98A7D;
+    --line: rgba(242,233,220,0.14);
+    --line-bright: rgba(242,233,220,0.28);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--charcoal);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond', serif; font-weight:500; letter-spacing:0.01em;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--amber-bright);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  /* Sprocket / film-perforation border, used as the site's signature device */
+  .sprockets{
+    height:14px;
+    background-image: radial-gradient(circle at 10px 7px, var(--charcoal-deep) 3px, transparent 3.2px);
+    background-size: 22px 14px;
+    background-repeat: repeat-x;
+    background-color: var(--charcoal-deep);
+    opacity:0.9;
+  }
+  .sprockets.light{ background-color:#0000; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(27,24,21,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.4rem; letter-spacing:0.06em;
+  }
+  .logo span{ color:var(--amber-bright); font-style:italic; }
+  .nav-links{ display:flex; gap:34px; align-items:center; }
+  .nav-links a{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--cream-dim);
+    transition:color .25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--amber-bright); }
+  .btn-whatsapp{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line-bright);
+    padding:8px 14px; border-radius:999px;
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.1em;
+    color:var(--cream);
+  }
+  .btn-whatsapp:hover{ border-color:var(--amber-bright); color:var(--amber-bright); }
+  .menu-toggle{ display:none; background:none; border:none; color:var(--cream); font-size:1.4rem; cursor:pointer; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; align-items:center;
+    padding:120px 28px 80px;
+    overflow:hidden;
+    background:var(--charcoal);
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+    width:100%; height:100%; object-fit:cover;
+    filter:grayscale(0.4) sepia(0.15) brightness(0.42) contrast(1.1);
+  }
+  .hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(ellipse 60% 55% at 12% 88%, rgba(201,122,43,0.35), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 10%, rgba(201,138,125,0.12), transparent 60%),
+      linear-gradient(180deg, rgba(18,16,16,0.55), rgba(18,16,16,0.78));
+  }
+  .hero-inner{ position:relative; z-index:2; max-width:1180px; margin:0 auto; width:100%; }
+  .hero .eyebrow{ display:block; margin-bottom:22px; }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.4vw, 5.4rem);
+    line-height:1.05;
+    max-width:14ch;
+  }
+  .hero h1 em{ color:var(--amber-bright); font-style:italic; }
+  .hero p.lede{
+    margin-top:26px; max-width:44ch;
+    font-size:1.08rem; color:var(--cream-dim); font-weight:300;
+  }
+  .hero-actions{ margin-top:42px; display:flex; gap:18px; flex-wrap:wrap; align-items:center; }
+  .btn-primary{
+    background:var(--amber);
+    color:var(--charcoal-deep);
+    padding:15px 30px;
+    font-family:'Space Mono', monospace; font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase;
+    border-radius:2px;
+    transition:background .25s ease, transform .25s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{ background:var(--amber-bright); transform:translateY(-1px); }
+  .btn-ghost{
+    border-bottom:1px solid var(--line-bright);
+    padding:15px 4px;
+    font-family:'Space Mono', monospace; font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  .btn-ghost:hover{ color:var(--amber-bright); border-color:var(--amber-bright); }
+
+  /* frame counter — signature motion element, respects reduced motion */
+  .frame-counter{
+    position:absolute; right:28px; bottom:36px; z-index:2;
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.12em;
+    color:var(--cream-dim); text-align:right;
+  }
+  .frame-counter .num{ color:var(--amber-bright); font-size:0.9rem; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding:110px 0; }
+  .section-head{ margin-bottom:64px; max-width:640px; }
+  .section-head h2{ font-size:clamp(2rem,4vw,3rem); margin-top:14px; }
+  .section-head p{ color:var(--cream-dim); margin-top:16px; font-size:1rem; max-width:52ch; }
+
+  /* ---------- SERVICES: "THE ROLL" ---------- */
+  .roll{ background:var(--charcoal-deep); }
+  .frames-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+  .frame-card{
+    background:var(--charcoal-deep);
+    padding:0 0 34px;
+    position:relative;
+  }
+  .frame-visual{
+    height:230px;
+    position:relative;
+    display:flex; align-items:flex-end;
+    padding:18px;
+    overflow:hidden;
+    background:var(--charcoal-deep);
+  }
+  .frame-visual img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(0.35) sepia(0.2) contrast(1.05) brightness(0.72);
+    transition:transform .6s ease;
+  }
+  .frame-card:hover .frame-visual img{ transform:scale(1.05); }
+  .frame-tint{ position:absolute; inset:0; }
+  .tint-wedding{ background:linear-gradient(160deg, rgba(58,36,32,0.55), rgba(201,138,125,0.35) 130%); }
+  .tint-personal{ background:linear-gradient(160deg, rgba(44,38,32,0.55), rgba(201,122,43,0.35) 130%); }
+  .tint-video{ background:linear-gradient(160deg, rgba(32,34,31,0.55), rgba(111,106,79,0.35) 130%); }
+  .frame-tag{
+    position:relative; z-index:2;
+    font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+    background:rgba(18,16,16,0.55); padding:5px 9px; color:var(--cream);
+  }
+  .frame-card-body{ padding:26px 26px 0; }
+  .frame-card h3{ font-size:1.6rem; }
+  .frame-card p{ color:var(--cream-dim); font-size:0.92rem; margin-top:10px; }
+  .frame-no{
+    position:absolute; top:16px; right:18px;
+    font-family:'Space Mono', monospace; font-size:0.7rem; color:rgba(242,233,220,0.75);
+    letter-spacing:0.08em;
+  }
+
+  /* ---------- PORTFOLIO: "CONTACT SHEET" ---------- */
+  .sheet-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .sheet-cell{
+    aspect-ratio:1/1; position:relative; overflow:hidden;
+    background:var(--charcoal-deep);
+  }
+  .sheet-cell .ph{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(0.35) sepia(0.18) contrast(1.05) brightness(0.8);
+    transition:transform .5s ease;
+  }
+  .sheet-cell:hover .ph{ transform:scale(1.06); }
+  .sheet-cell .ph-tint{
+    position:absolute; inset:0;
+    background:linear-gradient(155deg, var(--t1), var(--t2));
+    mix-blend-mode:multiply;
+  }
+  .sheet-cell .cell-label{
+    position:absolute; left:10px; bottom:10px;
+    font-family:'Space Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    color:rgba(242,233,220,0.85);
+  }
+  .portfolio-note{
+    margin-top:26px; font-family:'Space Mono', monospace; font-size:0.72rem;
+    color:var(--cream-dim); letter-spacing:0.04em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--charcoal-deep); }
+  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:start; }
+  .about p{ color:var(--cream-dim); margin-top:18px; max-width:56ch; }
+  .quote-frame{
+    border:1px solid var(--line-bright); padding:34px;
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.3rem;
+    color:var(--cream);
+  }
+  .quote-frame .src{
+    display:block; margin-top:20px; font-family:'Space Mono', monospace;
+    font-style:normal; font-size:0.7rem; letter-spacing:0.1em; color:var(--amber-bright);
+  }
+
+  /* ---------- BOOKING ---------- */
+  .booking{ position:relative; }
+  .booking-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; }
+  .booking-info h2{ font-size:clamp(2rem,4vw,2.8rem); }
+  .booking-info p{ color:var(--cream-dim); margin-top:16px; max-width:40ch; }
+  .contact-line{
+    margin-top:34px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--cream-dim);
+  }
+  .contact-line strong{ color:var(--cream); display:block; margin-bottom:4px; font-family:'Work Sans'; font-weight:500;}
+
+  form.frame-form{
+    border:1px solid var(--line-bright); padding:38px;
+    background:rgba(242,233,220,0.02);
+  }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field.full{ grid-column:1/-1; }
+  label{
+    font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  input, select, textarea{
+    background:transparent;
+    border:none; border-bottom:1px solid var(--line-bright);
+    color:var(--cream); font-family:'Work Sans'; font-size:0.95rem;
+    padding:9px 2px; outline:none;
+  }
+  input::placeholder, textarea::placeholder{ color:rgba(242,233,220,0.35); }
+  input:focus, select:focus, textarea:focus{ border-color:var(--amber-bright); }
+  select option{ background:var(--charcoal); color:var(--cream); }
+  textarea{ resize:vertical; min-height:80px; }
+  .submit-row{ margin-top:6px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  button.submit{
+    background:var(--amber); color:var(--charcoal-deep); border:none; cursor:pointer;
+    padding:15px 30px; font-family:'Space Mono', monospace; font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase;
+    transition:background .25s ease;
+  }
+  button.submit:hover{ background:var(--amber-bright); }
+  button.submit:disabled{ opacity:0.6; cursor:wait; }
+  .form-status{ font-family:'Space Mono', monospace; font-size:0.75rem; }
+  .form-status.ok{ color:#8FBF8A; }
+  .form-status.err{ color:#D98080; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px 0 34px;
+    background:var(--charcoal-deep);
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; align-items:center;
+  }
+  .footer-grid .logo{ font-size:1.2rem; }
+  .footer-links{ display:flex; gap:26px; font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.08em; color:var(--cream-dim); }
+  .footer-links a:hover{ color:var(--amber-bright); }
+  .copyright{
+    margin-top:34px; padding-top:24px; border-top:1px solid var(--line);
+    font-family:'Space Mono', monospace; font-size:0.66rem; color:rgba(242,233,220,0.4);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:880px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+    .frames-row{ grid-template-columns:1fr; }
+    .sheet-grid{ grid-template-columns:repeat(2,1fr); }
+    .about-grid, .booking-grid{ grid-template-columns:1fr; gap:40px; }
+    .form-row{ grid-template-columns:1fr; }
+    .frame-counter{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">DREAM <span>Frames</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#booking">Book</a>
+    </div>
+    <!-- Replace 91XXXXXXXXXX with your WhatsApp number, country code + number, no + or spaces -->
+    <a class="btn-whatsapp" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Dream%20Frames%2C%20I%27d%20like%20to%20ask%20about%20a%20shoot" target="_blank" rel="noopener">
+      💬 WhatsApp Us
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img class="hero-bg" src="https://picsum.photos/seed/df-hero-frame/1800/1100" alt="" aria-hidden="true">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">Wedding · Portrait · Film</span>
+    <h1>Every frame,<br><em>a dream</em> held still.</h1>
+    <p class="lede">Dream Frames is a photography and videography studio for weddings and personal shoots — unposed moments, honestly lit, kept the way you'll want to remember them.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#booking">Book a Session</a>
+      <a class="btn-ghost" href="#portfolio">View the Work</a>
+    </div>
+  </div>
+  <div class="frame-counter">
+    <div>DREAM FRAMES</div>
+    <div class="num" id="frameCounter">EXP 001/036</div>
+  </div>
+</section>
+<div class="sprockets"></div>
+
+<section id="services" class="roll">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What We Shoot</span>
+      <h2>Three ways to be remembered.</h2>
+      <p>Every booking is treated like its own roll of film — shot with intention, not rushed for volume.</p>
+    </div>
+    <div class="frames-row">
+      <div class="frame-card">
+        <div class="frame-visual">
+          <img src="https://picsum.photos/seed/df-wedding-1/700/600" alt="" aria-hidden="true">
+          <div class="frame-tint tint-wedding"></div>
+          <span class="frame-tag">Full Day</span>
+        </div>
+        <span class="frame-no">FRAME 01</span>
+        <div class="frame-card-body">
+          <h3>Wedding Shoots</h3>
+          <p>Ceremony to last dance — candid coverage, a second shooter option, and a same-week preview gallery.</p>
+        </div>
+      </div>
+      <div class="frame-card">
+        <div class="frame-visual">
+          <img src="https://picsum.photos/seed/df-portrait-1/700/600" alt="" aria-hidden="true">
+          <div class="frame-tint tint-personal"></div>
+          <span class="frame-tag">Studio / Outdoor</span>
+        </div>
+        <span class="frame-no">FRAME 02</span>
+        <div class="frame-card-body">
+          <h3>Personal Shoots</h3>
+          <p>Portraits, couples, maternity, and portfolio sessions — one location or a few, your pace.</p>
+        </div>
+      </div>
+      <div class="frame-card">
+        <div class="frame-visual">
+          <img src="https://picsum.photos/seed/df-video-1/700/600" alt="" aria-hidden="true">
+          <div class="frame-tint tint-video"></div>
+          <span class="frame-tag">Cinematic</span>
+        </div>
+        <span class="frame-no">FRAME 03</span>
+        <div class="frame-card-body">
+          <h3>Videography</h3>
+          <p>Highlight reels and full-length film edits, shot handheld and gimbal-stabilized, with sound design.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Contact Sheet</span>
+      <h2>A few frames from recent rolls.</h2>
+    </div>
+    <div class="sheet-grid">
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-1/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(58,36,32,0.5);--t2:rgba(201,138,125,0.28);"></div><span class="cell-label">007 · Wedding</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-2/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(44,38,32,0.5);--t2:rgba(201,122,43,0.28);"></div><span class="cell-label">008 · Portrait</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-3/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(32,34,31,0.5);--t2:rgba(111,106,79,0.28);"></div><span class="cell-label">009 · Film</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-4/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(36,29,26,0.5);--t2:rgba(232,163,61,0.28);"></div><span class="cell-label">010 · Wedding</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-5/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(42,31,28,0.5);--t2:rgba(201,138,125,0.28);"></div><span class="cell-label">011 · Couple</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-6/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(33,31,26,0.5);--t2:rgba(166,138,91,0.28);"></div><span class="cell-label">012 · Portrait</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-7/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(35,27,23,0.5);--t2:rgba(201,122,43,0.28);"></div><span class="cell-label">013 · Wedding</span></div>
+      <div class="sheet-cell"><img class="ph" src="https://picsum.photos/seed/df-sheet-8/500/500" alt="" aria-hidden="true"><div class="ph-tint" style="--t1:rgba(31,34,30,0.5);--t2:rgba(122,143,111,0.28);"></div><span class="cell-label">014 · Film</span></div>
+    </div>
+    <p class="portfolio-note">— these are free stock placeholder photos (Lorem Picsum), tinted to match the theme. Swap each &lt;img class="ph"&gt; src for your own shoot once you have real photos — see SETUP.md.</p>
+  </div>
+</section>
+<div class="sprockets"></div>
+
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">The Studio</span>
+      <h2>Not everything needs to be posed.</h2>
+      <p>Dream Frames started with a simple idea: the best photo of the day is rarely the one everyone lined up for. We shoot weddings and personal sessions the same way — stay close, stay quiet, and let the real moment happen in front of the lens.</p>
+      <p>Every shoot includes a same-week preview gallery, and full edited sets are delivered within the timeline agreed at booking.</p>
+    </div>
+    <div class="quote-frame">
+      "We didn't just get photos back. We got the day back."
+      <span class="src">— EDIT THIS: swap in a real client quote once you have one</span>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="booking">
+  <div class="wrap booking-grid">
+    <div class="booking-info">
+      <span class="eyebrow">Book a Session</span>
+      <h2>Load the next frame.</h2>
+      <p>Tell us the date and the kind of day you're planning. We'll confirm availability and pricing over email or WhatsApp, usually within a day.</p>
+      <div class="contact-line">
+        <strong>Dream Frames Studio</strong>
+        hello@dreamframes.example · +91 XXXXX XXXXX<br>
+        Mon–Sat, 10am–7pm
+      </div>
+    </div>
+
+    <form class="frame-form" id="bookingForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="Wedding Shoot">Wedding Shoot</option>
+            <option value="Personal Shoot">Personal Shoot</option>
+            <option value="Videography">Videography</option>
+            <option value="Wedding + Video">Wedding + Video</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field full">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" name="date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field full">
+          <label for="message">A little about the day</label>
+          <textarea id="message" name="message" placeholder="Location, number of guests, timings — anything that helps us plan."></textarea>
+        </div>
+      </div>
+      <div class="submit-row">
+        <button class="submit" type="submit" id="submitBtn">Send Booking</button>
+        <span class="form-status" id="formStatus"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="logo">DREAM <span>Frames</span></div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#booking">Book</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© <span id="year"></span> Dream Frames Studio</span>
+      <span>Built with film in mind.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Subtle frame-counter tick in the hero (purely decorative, respects reduced motion)
+  (function(){
+    var el = document.getElementById('frameCounter');
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var n = 1;
+    setInterval(function(){
+      n = n >= 36 ? 1 : n + 1;
+      el.textContent = 'EXP ' + String(n).padStart(3,'0') + '/036';
+    }, 2600);
+  })();
+
+  /* =========================================================================
+     BOOKING FORM — sends an email (via Formspree) and a WhatsApp message
+     (via CallMeBot) whenever someone submits the form.
+
+     SETUP REQUIRED — see SETUP.md for full step-by-step instructions:
+     1) Replace FORMSPREE_ENDPOINT with your own Formspree form URL.
+     2) Replace CALLMEBOT_PHONE and CALLMEBOT_APIKEY with your own values.
+     Until both are set, the form will still show a success message but
+     won't actually notify you — so don't skip the setup steps.
+     ========================================================================= */
+  var FORMSPREE_ENDPOINT = "https://formspree.io/f/mzepdren";
+  var CALLMEBOT_PHONE   = "91998013524";   // your WhatsApp number, country code + number, no +
+  var CALLMEBOT_APIKEY  = "YOUR_API_KEY";   // from CallMeBot, see SETUP.md
+
+  var form = document.getElementById('bookingForm');
+  var statusEl = document.getElementById('formStatus');
+  var submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Sending…';
+    statusEl.className = 'form-status';
+
+    var data = Object.fromEntries(new FormData(form).entries());
+
+    var waMessage =
+      "New Dream Frames booking:\n" +
+      "Name: " + data.name + "\n" +
+      "Phone: " + data.phone + "\n" +
+      "Email: " + data.email + "\n" +
+      "Service: " + data.service + "\n" +
+      "Date: " + (data.date || "not specified") + "\n" +
+      "Notes: " + (data.message || "-");
+
+    var emailOk = false;
+    var waOk = false;
+
+    // 1) Email via Formspree
+    try {
+      if (FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') === -1) {
+        var res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        emailOk = res.ok;
+      }
+    } catch (err) { emailOk = false; }
+
+    // 2) WhatsApp via CallMeBot (fire-and-forget, no-cors so it can't be read but still sends)
+    try {
+      if (CALLMEBOT_PHONE.indexOf('X') === -1 && CALLMEBOT_APIKEY.indexOf('YOUR_API_KEY') === -1) {
+        var url = "https://api.callmebot.com/whatsapp.php?phone=" + CALLMEBOT_PHONE +
+                   "&text=" + encodeURIComponent(waMessage) +
+                   "&apikey=" + CALLMEBOT_APIKEY;
+        await fetch(url, { mode: 'no-cors' });
+        waOk = true; // no-cors means we can't confirm, but the request was sent
+      }
+    } catch (err) { waOk = false; }
+
+    submitBtn.disabled = false;
+
+    if (emailOk || waOk) {
+      statusEl.textContent = 'Booking sent — we\'ll be in touch shortly.';
+      statusEl.className = 'form-status ok';
+      form.reset();
+    } else {
+      statusEl.textContent = 'Notifications aren\'t set up yet (see SETUP.md) — but here\'s your message: ' + data.email;
+      statusEl.className = 'form-status err';
+    }
+  });
+</script>
+
+</body>
+</html>
